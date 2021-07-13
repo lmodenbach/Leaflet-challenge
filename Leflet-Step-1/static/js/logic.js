@@ -17,18 +17,20 @@ var allLastSevenDaysURL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/sum
 d3.json(allLastSevenDaysURL).then(function(response) {
 
 function markerSize(quakeSize) {
-    return quakeSize*10;
+    return quakeSize*10000;
 }
-
 
 for (var i = 0; i < response.features.length; i++) {
     L.circle(([response.features[i].geometry.coordinates[1], response.features[i].geometry.coordinates[0]]), {
       fillOpacity: 0.75,
       color: "rgb(215, 154, 227)",
       fillColor: "rgb(247, 171, 47)",
-      radius: markerSize(response.features[i].properties.mag)
+      radius: markerSize(Math.abs(response.features[i].properties.mag))
 
     }).bindPopup("<h1>" + response.features[i].properties.mag + "</h1><hr><h3>Magnitude Earthquake</h3>").addTo(myMap);
+    
+    
 }
+
 });
 
