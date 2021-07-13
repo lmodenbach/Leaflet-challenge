@@ -29,7 +29,12 @@ for (var i = 0; i < response.features.length; i++) {
 
     }).bindPopup("<h1>" + response.features[i].properties.mag + "</h1><hr><h3>Magnitude Earthquake</h3>").addTo(myMap);
     
-    
+    // var heat = L.heatLayer([[response.features[i].geometry.coordinates[1], response.features[i].geometry.coordinates[0]]], 
+    //     {
+    //       radius: markerSize(Math.abs(response.features[i].properties.mag)),
+    //       blur: 35
+    //     }).addTo(myMap);
+
 }
 
 });
