@@ -17,7 +17,7 @@ var allLastSevenDaysURL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/sum
 d3.json(allLastSevenDaysURL).then(function(response) {
 
 function markerSize(quakeSize) {
-    return quakeSize*10000;
+    return quakeSize*20000;
 }
 
 
@@ -58,30 +58,13 @@ for (var i = 0; i < response.features.length; i++) {
       fillColor: circleColor(Math.abs(response.features[i].geometry.coordinates[2])),
       radius: markerSize(Math.abs(response.features[i].properties.mag))
       
-    }).bindPopup("<h2>Magnitude: " + response.features[i].properties.mag + "</h2><hr><h2>Depth: " + Math.abs(response.features[i].geometry.coordinates[2]) + "</h2>")
+    }).bindPopup("<h3>Magnitude: " + response.features[i].properties.mag + 
+                 "</h3><hr><h3>Depth: " + Math.abs(response.features[i].geometry.coordinates[2]) + "</h3><hr>" +
+                 "<h3>Lat: " + response.features[i].geometry.coordinates[1] + ", Lng: " + 
+                 response.features[i].geometry.coordinates[0] + "</h3>")
     .addTo(myMap);
     
   } 
-
-  // var legend = L.control({ position: "bottomright" });
-  // legend.onAdd = function() {
-  //   var div = L.DomUtil.create("div", "info legend");
-  //   var limits = [0, 5, 10, 20, 30, 50, 100, 200, 500];
-  //   var colors = ["rgb(58, 240, 64)", "rgb(170, 240, 58)", "rgb(240, 240, 58)", "rgb(247, 185, 59)", "rgb(247, 128, 59)", "rgb(247, 62, 59)", "rgb(188, 59, 247)", "rgb(48, 58, 194)", "rgb(16, 19, 115)"];
-  //   var labelText = ["Depth < 5KM", "5KM <= Depth < 10KM", "10KM <= Depth < 20KM", "20KM <= Depth < 30KM", "30KM <= Depth < 50KM", "50KM <= Depth < 100KM", "100KM <= Depth < 200KM", "200KM <= Depth < 500KM", "500KM <= Depth"];
-  //   var labels = [];
-
-  //   div.innerHTML = "<h2><strong>Earthquake Depth</strong></h2>";
-
-  //   limits.forEach(function(limit, index) {
-  //     labels.push("<li style=\"background-color: " + colors[index] + "\"><strong>" + labelText[index] + "</strong></li>");
-  //   });
-
-  //   div.innerHTML += "<ul>" + labels.join("") + "</ul>";
-  //   return div;
-  // };
-
-  // legend.addTo(myMap);
 
 
 // Create a legend to display information about our map
@@ -101,7 +84,7 @@ info.onAdd = function() {
     "<div class=\"box\" style=\"background-color: rgb(247, 62, 59)\">50 - 99.9</div>", 
     "<div class=\"box\" style=\"background-color: rgb(188, 59, 247)\">100 - 199.9</div>", 
     "<div class=\"box\" style=\"background-color: rgb(48, 58, 194)\">200 - 499.9</div>", 
-    "<div class=\"box\" style=\"background-color: rgb(16, 19, 115)\">500 <= </div>"
+    "<div class=\"box\" style=\"background-color: rgb(16, 19, 115); color: grey\">500 <= </div>"
   ].join("<br>");
   return div;
 };
