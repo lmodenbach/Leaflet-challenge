@@ -63,25 +63,51 @@ for (var i = 0; i < response.features.length; i++) {
     
   } 
 
-  var legend = L.control({ position: "bottomright" });
-  legend.onAdd = function() {
-    var div = L.DomUtil.create("div", "info legend");
-    var limits = [0, 5, 10, 20, 30, 50, 100, 200, 500];
-    var colors = ["rgb(58, 240, 64)", "rgb(170, 240, 58)", "rgb(240, 240, 58)", "rgb(247, 185, 59)", "rgb(247, 128, 59)", "rgb(247, 62, 59)", "rgb(188, 59, 247)", "rgb(48, 58, 194)", "rgb(16, 19, 115)"];
-    var labelText = ["Depth < 5KM", "5KM <= Depth < 10KM", "10KM <= Depth < 20KM", "20KM <= Depth < 30KM", "30KM <= Depth < 50KM", "50KM <= Depth < 100KM", "100KM <= Depth < 200KM", "200KM <= Depth < 500KM", "500KM <= Depth"];
-    var labels = [];
+  // var legend = L.control({ position: "bottomright" });
+  // legend.onAdd = function() {
+  //   var div = L.DomUtil.create("div", "info legend");
+  //   var limits = [0, 5, 10, 20, 30, 50, 100, 200, 500];
+  //   var colors = ["rgb(58, 240, 64)", "rgb(170, 240, 58)", "rgb(240, 240, 58)", "rgb(247, 185, 59)", "rgb(247, 128, 59)", "rgb(247, 62, 59)", "rgb(188, 59, 247)", "rgb(48, 58, 194)", "rgb(16, 19, 115)"];
+  //   var labelText = ["Depth < 5KM", "5KM <= Depth < 10KM", "10KM <= Depth < 20KM", "20KM <= Depth < 30KM", "30KM <= Depth < 50KM", "50KM <= Depth < 100KM", "100KM <= Depth < 200KM", "200KM <= Depth < 500KM", "500KM <= Depth"];
+  //   var labels = [];
 
-    div.innerHTML = "<h2><strong>Earthquake Depth</strong></h2>";
+  //   div.innerHTML = "<h2><strong>Earthquake Depth</strong></h2>";
 
-    limits.forEach(function(limit, index) {
-      labels.push("<li style=\"background-color: " + colors[index] + "\"><strong>" + labelText[index] + "</strong></li>");
-    });
+  //   limits.forEach(function(limit, index) {
+  //     labels.push("<li style=\"background-color: " + colors[index] + "\"><strong>" + labelText[index] + "</strong></li>");
+  //   });
 
-    div.innerHTML += "<ul>" + labels.join("") + "</ul>";
-    return div;
-  };
+  //   div.innerHTML += "<ul>" + labels.join("") + "</ul>";
+  //   return div;
+  // };
 
-  legend.addTo(myMap);
+  // legend.addTo(myMap);
+
+
+// Create a legend to display information about our map
+var info = L.control({
+  position: "bottomright"
+});
+
+// When the layer control is added, insert a div with the class of "legend"
+info.onAdd = function() {
+  var div = L.DomUtil.create("div", "legend");
+  div.innerHTML = "<h4>Earthquake Depth (KM)</h4>" + [
+    "<div class=\"box\" style=\"background-color: rgb(58, 240, 64)\"> < 5 </div>", 
+    "<div class=\"box\" style=\"background-color: rgb(170, 240, 58)\">5 - 9.9</div>", 
+    "<div class=\"box\" style=\"background-color: rgb(240, 240, 58)\">10 - 19.9</div>", 
+    "<div class=\"box\" style=\"background-color: rgb(247, 185, 59)\">20 - 29.9</div>", 
+    "<div class=\"box\" style=\"background-color: rgb(247, 128, 59)\">30 - 49.9</div>", 
+    "<div class=\"box\" style=\"background-color: rgb(247, 62, 59)\">50 - 99.9</div>", 
+    "<div class=\"box\" style=\"background-color: rgb(188, 59, 247)\">100 - 199.9</div>", 
+    "<div class=\"box\" style=\"background-color: rgb(48, 58, 194)\">200 - 499.9</div>", 
+    "<div class=\"box\" style=\"background-color: rgb(16, 19, 115)\">500 <= </div>"
+  ].join("<br>");
+  return div;
+};
+// Add the info legend to the map
+info.addTo(myMap);
+
 
 });
 
