@@ -68,7 +68,7 @@ d3.json("./static/data/tectonicplates-master/GeoJSON/PB2002_boundaries.json").th
       maxZoom: 20,
       zoomOffset: -1,
       id: "mapbox/streets-v11",
-      accessToken: API_KEY
+      accessToken: "pk.eyJ1IjoibG1vZGVuYmFjaCIsImEiOiJja3IyOG5lcW8yOXAzMnZvODBqZDdwcGMzIn0.TC56DU65VYGMMuleVsgG9g"
     });
 
     var satellitemap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
@@ -77,7 +77,7 @@ d3.json("./static/data/tectonicplates-master/GeoJSON/PB2002_boundaries.json").th
       maxZoom: 18,
       zoomOffset: -1,
       id: "mapbox/satellite-v9",
-      accessToken: API_KEY
+      accessToken: "pk.eyJ1IjoibG1vZGVuYmFjaCIsImEiOiJja3IyOG5lcW8yOXAzMnZvODBqZDdwcGMzIn0.TC56DU65VYGMMuleVsgG9g"
     });;
 
     var lightmap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
@@ -86,7 +86,7 @@ d3.json("./static/data/tectonicplates-master/GeoJSON/PB2002_boundaries.json").th
       maxZoom: 18,
       zoomOffset: -1,
       id: "mapbox/light-v10",
-      accessToken: API_KEY
+      accessToken: "pk.eyJ1IjoibG1vZGVuYmFjaCIsImEiOiJja3IyOG5lcW8yOXAzMnZvODBqZDdwcGMzIn0.TC56DU65VYGMMuleVsgG9g"
     });;
 
   var baseMaps = {
