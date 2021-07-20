@@ -59,7 +59,7 @@ for (var i = 0; i < response.features.length; i++) {
       radius: markerSize(Math.abs(response.features[i].properties.mag))
       
     }).bindPopup("<h3>Magnitude: " + response.features[i].properties.mag + 
-                 "</h3><hr><h3>Depth: " + Math.abs(response.features[i].geometry.coordinates[2]) + "</h3><hr>" +
+                 "</h3><hr><h3>Depth: " + Math.abs(response.features[i].geometry.coordinates[2]) + " KM</h3><hr>" +
                  "<h3>Lat: " + response.features[i].geometry.coordinates[1] + ", Lng: " + 
                  response.features[i].geometry.coordinates[0] + "</h3>")
     .addTo(myMap);
