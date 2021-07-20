@@ -51,27 +51,6 @@ for (var i = 0; i < response.features.length; i++) {
                  response.features[i].geometry.coordinates[0] + "</h3>").addTo(earthquakes);
 } 
 
-var legend = L.control({
-  position: "bottomright"
-});
-
-legend.onAdd = function() {
-  var div = L.DomUtil.create("div", "legend");
-  div.innerHTML = "<h4>Earthquake Depth (KM)</h4>" + [
-    "<div class=\"box\" style=\"background-color: rgb(58, 240, 64)\"> < 5 </div>", 
-    "<div class=\"box\" style=\"background-color: rgb(170, 240, 58)\">5 - 9.9</div>", 
-    "<div class=\"box\" style=\"background-color: rgb(240, 240, 58)\">10 - 19.9</div>", 
-    "<div class=\"box\" style=\"background-color: rgb(247, 185, 59)\">20 - 29.9</div>", 
-    "<div class=\"box\" style=\"background-color: rgb(247, 128, 59)\">30 - 49.9</div>", 
-    "<div class=\"box\" style=\"background-color: rgb(247, 62, 59)\">50 - 99.9</div>", 
-    "<div class=\"box\" style=\"background-color: rgb(188, 59, 247)\">100 - 199.9</div>", 
-    "<div class=\"box\" style=\"background-color: rgb(48, 58, 194)\">200 - 499.9</div>", 
-    "<div class=\"box\" style=\"background-color: rgb(16, 19, 115); color: grey\">500 <= </div>"
-  ].join("<br>");
-  return div;
-};
-
-
 d3.json("./static/data/tectonicplates-master/GeoJSON/PB2002_boundaries.json").then(function(geoData) {
     console.log(geoData);
 
@@ -130,6 +109,26 @@ d3.json("./static/data/tectonicplates-master/GeoJSON/PB2002_boundaries.json").th
   L.control.layers(baseMaps, overlayMaps, {
     collapsed: false
   }).addTo(myMap);
+
+  var legend = L.control({
+    position: "bottomright"
+  });
+  
+  legend.onAdd = function() {
+    var div = L.DomUtil.create("div", "legend");
+    div.innerHTML = "<h4>Earthquake Depth (KM)</h4>" + [
+      "<div class=\"box\" style=\"background-color: rgb(58, 240, 64)\"> < 5 </div>", 
+      "<div class=\"box\" style=\"background-color: rgb(170, 240, 58)\">5 - 9.9</div>", 
+      "<div class=\"box\" style=\"background-color: rgb(240, 240, 58)\">10 - 19.9</div>", 
+      "<div class=\"box\" style=\"background-color: rgb(247, 185, 59)\">20 - 29.9</div>", 
+      "<div class=\"box\" style=\"background-color: rgb(247, 128, 59)\">30 - 49.9</div>", 
+      "<div class=\"box\" style=\"background-color: rgb(247, 62, 59)\">50 - 99.9</div>", 
+      "<div class=\"box\" style=\"background-color: rgb(188, 59, 247)\">100 - 199.9</div>", 
+      "<div class=\"box\" style=\"background-color: rgb(48, 58, 194)\">200 - 499.9</div>", 
+      "<div class=\"box\" style=\"background-color: rgb(16, 19, 115); color: grey\">500 <= </div>"
+    ].join("<br>");
+    return div;
+  };
 
   legend.addTo(myMap);
 
